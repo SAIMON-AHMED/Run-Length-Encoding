@@ -1,7 +1,7 @@
-// Time -> O(n^2) | Space -> O(n^2)
+// Time -> O(n^2) | Space -> O(n)
 function runLengthEncoding(string) {
 
-  let str = "";
+  let arr = [];
   let count = 1;
   
   for (let i = 0; i < string.length; i++) {
@@ -10,11 +10,14 @@ function runLengthEncoding(string) {
     } else if (string[i] != string[i + 1]) {
       while (count >= 10) {
         count -= 9;
-        str += "9" + string[i];        
+        arr.push(9);
+        arr.push(string[i]);
       }
-      str += count + string[i];
+      arr.push(count);
+      arr.push(string[i]);
       count = 1;
     }    
   }
-  return str;
+  return arr.join('');
 }
+
